@@ -1,0 +1,15 @@
+<div class="messages-container">
+  <div *ngFor="let message of messages" [ngClass]="{'message': true, 'message-sent': message.sent, 'message-received': !message.sent}">
+    {{ message.body }}
+  </div>
+</div>
+<div class="input-container">
+  <input
+    #messageInput
+    (keyup.enter)="sendMessage(messageInput.value); messageInput.value = ''"
+    placeholder="Type a message..."
+  />
+  <button (click)="sendMessage(messageInput.value); messageInput.value = ''">
+    Send
+  </button>
+</div>
