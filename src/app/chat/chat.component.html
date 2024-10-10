@@ -1,15 +1,26 @@
-<div class="messages-container">
+<div #scrollContainer class="messages-container">
   <div *ngFor="let message of messages" [ngClass]="{'message': true, 'message-sent': message.sent, 'message-received': !message.sent}">
-    {{ message.body }}
+    <div class="message-content">{{ message.body }}</div>
+    <div class="message-date">{{ formatDate(message.fecha) }}</div>
   </div>
+</div>
+<div class="input-container">
+  <input #userInput 
+    placeholder="Nombre de usuario"
+  />
 </div>
 <div class="input-container">
   <input
     #messageInput
-    (keyup.enter)="sendMessage(messageInput.value); messageInput.value = ''"
-    placeholder="Type a message..."
+    (keyup.enter)="sendMessage()"
+    placeholder="Escribe un mensaje..."
   />
-  <button (click)="sendMessage(messageInput.value); messageInput.value = ''">
-    Send
+  <button (click)="sendMessage()">
+    Enviar
+  </button>
+</div>
+<div class="input-container">
+  <button (click)="deleteAllMessages()" class="delete-button">
+    Eliminar todos los mensajes
   </button>
 </div>
